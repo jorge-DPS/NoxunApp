@@ -1,7 +1,6 @@
-// src/components/UserSelect.jsx
 import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
-import './UserSelect.css'; // Asegúrate de crear este archivo CSS
+import './UserSelect.css';
 
 function UserSelect({ onUserSelect, selectedUserId }) {
   const [users, setUsers] = useState([]);
@@ -28,8 +27,9 @@ function UserSelect({ onUserSelect, selectedUserId }) {
       onChange={(e) => onUserSelect(e.target.value)}
       value={selectedUserId}
       className="custom-select"
+      // style={{ backgroundColor: 'var(--card-background)', color: 'var(--text-color)' }}
     >
-      <option value="">Todos los Usuarios</option>
+      <option value="">All Users</option>
       {users.map(user => (
         <option key={user.id} value={user.id}>{user.name}</option>
       ))}

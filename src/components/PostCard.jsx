@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 
 function PostCard({ post, showFullContent = false }) {
   return (
+    <>
+    
     <motion.div
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
@@ -18,12 +20,14 @@ function PostCard({ post, showFullContent = false }) {
           </Card.Text>
           {!showFullContent && (
             <Link to={`/post/${post.id}`} className="btn btn-primary">
-              Read More
+              Leer mas...
             </Link>
           )}
         </Card.Body>
       </Card>
     </motion.div>
+    </>
+
   );
 }
 

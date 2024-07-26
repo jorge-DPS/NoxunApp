@@ -24,7 +24,7 @@ function PostDetails() {
       ]);
 
       if (!postResponse.ok || !commentsResponse.ok) {
-        throw new Error('Failed to fetch data');
+        throw new Error('No se pudieron recuperar los datos');
       }
 
       const postData = await postResponse.json();
@@ -33,8 +33,8 @@ function PostDetails() {
       setComments(commentsData);
       setError(null);
     } catch (error) {
-      setError('Error fetching post and comments. Please try again later.');
-      console.error('Error fetching post and comments:', error);
+      setError('Error al recuperar publicaciones y comentarios. Por favor, inténtelo de nuevo más tarde.');
+      console.error('Error al recuperar publicaciones y comentarios:', error);
     } finally {
       setLoading(false);
     }
@@ -46,9 +46,11 @@ function PostDetails() {
 
   return (
     <Container className="my-5">
+        <h3 className='text-center'>POST</h3>
+
       {post && <PostCard post={post} showFullContent={true} />}
 
-      <h3 className="mb-4 mt-5">Comments</h3>
+      <h3 className="mb-4 mt-5 text-center">Comentarios</h3>
       <Row xs={1} md={2} className="g-4">
         {comments.map(comment => (
           <Col key={comment.id}>

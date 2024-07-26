@@ -1,6 +1,7 @@
 // src/components/PostList.jsx
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { motion } from 'framer-motion';
 import SearchBar from './SearchBar';
 import Pagination from './Pagination';
 import PostCard from './PostCard';
@@ -63,9 +64,34 @@ function PostList() {
   if (loading) return <div className="text-center mt-5">Loading...</div>;
   if (error) return <div className="text-center mt-5 text-danger">{error}</div>;
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
+  };
+
   return (
     <Container className="mt-4">
-      <h1 className="text-center mb-4">JSONPlaceholder Posts</h1>
+      <motion.h1
+        className="text-center mb-4"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 100 }}
+      >
+        JSONPlaceholder Posts
+      </motion.h1>
       <Row className="mb-3">
         <Col md={6}>
           <SearchBar onSearch={handleSearch} />
@@ -74,13 +100,23 @@ function PostList() {
           <UserSelect onUserSelect={handleUserSelect} selectedUserId={selectedUser} />
         </Col>
       </Row>
-      <Row xs={1} md={2} lg={3} className="g-4 mb-4">
-        {posts.map(post => (
-          <Col key={post.id}>
-            <PostCard post={post} />
-          </Col>
-        ))}
-      </Row>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <h3 className='text-center'>POST</h3>
+
+        <Row xs={1} md={2} lg={3} className="g-4 mb-4">
+          {posts.map(post => (
+            <Col key={post.id}>
+              <motion.div variants={itemVariants}>
+                <PostCard post={post} />
+              </motion.div>
+            </Col>
+          ))}
+        </Row>
+      </motion.div>
       <Pagination 
         currentPage={currentPage}
         totalPages={Math.ceil(totalPosts / postsPerPage)}

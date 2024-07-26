@@ -1,11 +1,11 @@
 /* src/components/UserSelect.css */
 .custom-select option:checked,
 .custom-select option:hover {
-  background-color: #007bff !important;
+  background-color: var(--primary-color) !important;
   color: white !important;
 }
 
 .custom-select option {
-  background-color: white;
-  color: black;
+  /* background-color: var(--card-background); */
+  color: var(--text-color);
 }
