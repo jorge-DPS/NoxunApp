@@ -1,4 +1,6 @@
 # NoxunApp
+## Autor
+Jorge Daniel Pacosillo Santander
 
 Este es el README para el proyecto **NoxunApp**. A continuación, se detallan los pasos para clonar el repositorio, instalar las dependencias y levantar el servidor para correr la aplicación.
 
@@ -30,5 +32,3 @@ npm run dev
 ```
 ## Información adicional
 Recomendación: para asegurarte de que tengas la última versión de Node.js y npm instaladas
-## Autor
-Jorge Daniel Pacosillo Santander
