@@ -1,6 +1,6 @@
 # NoxunApp
 ## Autor
-Jorge Daniel Pacosillo Santander
+### Jorge Daniel Pacosillo Santander
 
 Este es el README para el proyecto **NoxunApp**. A continuación, se detallan los pasos para clonar el repositorio, instalar las dependencias y levantar el servidor para correr la aplicación.
 
