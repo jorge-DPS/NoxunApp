@@ -1,0 +1,11 @@
+/* src/components/UserSelect.css */
+.custom-select option:checked,
+.custom-select option:hover {
+  background-color: #007bff !important;
+  color: white !important;
+}
+
+.custom-select option {
+  background-color: white;
+  color: black;
+}

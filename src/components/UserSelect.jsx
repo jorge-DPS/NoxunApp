@@ -14,12 +14,12 @@ function UserSelect({ onUserSelect, selectedUserId }) {
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/users');
       if (!response.ok) {
-        throw new Error('Failed to fetch users');
+        throw new Error('No se pudieron recuperar los usuarios');
       }
       const data = await response.json();
       setUsers(data);
     } catch (error) {
-      console.error('Error fetching users:', error);
+      console.error('Error al recuperar usuarios:', error);
     }
   };
 
@@ -29,7 +29,7 @@ function UserSelect({ onUserSelect, selectedUserId }) {
       value={selectedUserId}
       className="custom-select"
     >
-      <option value="">All Users</option>
+      <option value="">Todos los Usuarios</option>
       {users.map(user => (
         <option key={user.id} value={user.id}>{user.name}</option>
       ))}

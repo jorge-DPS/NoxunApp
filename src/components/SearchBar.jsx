@@ -15,7 +15,7 @@ function SearchBar({ onSearch }) {
       <InputGroup>
         <Form.Control
           type="text"
-          placeholder="Search posts..."
+          placeholder="Buscar Posts..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

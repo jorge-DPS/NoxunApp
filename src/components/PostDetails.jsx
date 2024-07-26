@@ -5,7 +5,44 @@ import PostCard from './PostCard';
 import CommentCard from './CommentCard';
 
 function PostDetails() {
-  // ... (el resto del código permanece igual)
+  const [post, setPost] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetchPostAndComments();
+  }, [id]);
+
+  const fetchPostAndComments = async () => {
+    setLoading(true);
+    try {
+      const [postResponse, commentsResponse] = await Promise.all([
+        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`),
+        fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
+      ]);
+
+      if (!postResponse.ok || !commentsResponse.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const postData = await postResponse.json();
+      const commentsData = await commentsResponse.json();
+      setPost(postData);
+      setComments(commentsData);
+      setError(null);
+    } catch (error) {
+      setError('Error fetching post and comments. Please try again later.');
+      console.error('Error fetching post and comments:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <Container className="text-center mt-5"><h2>Loading...</h2></Container>;
+  if (error) return <Container className="text-center mt-5 text-danger"><h2>{error}</h2></Container>;
+  if (!post) return <Container className="text-center mt-5"><h2>Post not found</h2></Container>;
 
   return (
     <Container className="my-5">
@@ -21,7 +58,7 @@ function PostDetails() {
       </Row>
 
       <div className="text-center mt-4">
-        <Link to="/" className="btn btn-primary">Back to Posts</Link>
+        <Link to="/" className="btn btn-primary">Volver a posts</Link>
       </div>
     </Container>
   );
