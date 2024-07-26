@@ -30,3 +30,5 @@ npm run dev
 ```
 ## Información adicional
 Recomendación: para asegurarte de que tengas la última versión de Node.js y npm instaladas
+## Autor
+Jorge Daniel Pacosillo Santander
